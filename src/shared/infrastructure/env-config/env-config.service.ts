@@ -8,10 +8,10 @@ export class EnvConfigService implements IEnvConfig {
     this.configService = configService;
   }
   getAppPort(): number {
-    return Number(process.env.APP_PORT || '3000');
+    return Number(this.configService.get<number>('APP_PORT', 3000));
   }
 
   getNodeEnv(): string {
-    return process.env.NODE_ENV || 'development';
+    return this.configService.get<string>('NODE_ENV', 'development');
   }
 }
